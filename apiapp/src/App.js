@@ -1,25 +1,39 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    const fetchRandomRecipes = async () => {
+      try {
+        const response = await axios.get('https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch');
+        setRecipes(response.data.recipes); // Assuming the response contains an array of recipes
+      } catch (error) {
+        console.error('Error fetching random recipes:', error);
+      }
+    };
+
+    fetchRandomRecipes();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>
+          <h2>Random Recipes:</h2>
+          <ul>
+            {recipes.map((recipe, index) => (
+              <li key={index}>{recipe.name}</li>
+            ))}
+          </ul>
+        </div>
       </header>
     </div>
   );
 }
 
 export default App;
+
