@@ -1,10 +1,8 @@
+// eslint-disable
 import React, { useState, useEffect } from 'react';
-
-import './App.css';
 import axios from 'axios';
-// import RecipeDisplay from './components/RandomRecipe';
 
-function App() {
+const RecipeDisplay = () => {
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -43,11 +41,8 @@ function App() {
   if (!recipe) {
     return <div>No recipe found.</div>;
   }
+
   return (
-    <div>
-      <h1>Random Vegetarian Recipe</h1>
-        {/* <RecipeDisplay/> */}
-        return (
     <div>
       <h1>{recipe.title}</h1>
       <img src={recipe.image} alt={recipe.title} />
@@ -60,9 +55,7 @@ function App() {
       <h2>Instructions:</h2>
       <div dangerouslySetInnerHTML={{ __html: recipe.instructions }}></div>
     </div>
-    </div>
   );
-}
+};
 
-export default App;
-
+export default RecipeDisplay;
