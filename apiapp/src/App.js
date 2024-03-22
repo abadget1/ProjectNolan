@@ -8,12 +8,14 @@ function App() {
   const fetchRecipe = async () => {
     const options = {
       method: 'GET',
+      // This is the api i found online that i pulled
       url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random',
       params: {
         tags: 'vegetarian',
         number: '1'
       },
       headers: {
+        // free public key
         'X-RapidAPI-Key': '4dcf9c0544mshb812bc2bd441b4fp1c8b78jsn90580a18b7bd',
         'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
       }
@@ -49,6 +51,7 @@ function App() {
   return (
     <div>
       <h1>Random Vegetarian Recipe</h1>
+    // Click button to get a different recipe
       <button onClick={handleClick}>Get Another Recipe</button>
       <br />
       <div>
